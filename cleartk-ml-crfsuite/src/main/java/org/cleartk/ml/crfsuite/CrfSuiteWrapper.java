@@ -44,6 +44,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLDecoder;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -244,7 +245,7 @@ public class CrfSuiteWrapper {
       FeaturesEncoder<List<NameNumber>> featuresEncoder,
       File modelFile) throws IOException {
 
-    File featureFile = File.createTempFile("features", ".crfsuite");
+    File featureFile = Files.createTempFile("features", ".crfsuite").toFile();
     featureFile.deleteOnExit();
     logger.log(Level.FINE, "Write features to classify to " + featureFile.getAbsolutePath());
     try {

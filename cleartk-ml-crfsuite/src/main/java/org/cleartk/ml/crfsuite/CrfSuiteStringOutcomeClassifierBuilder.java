@@ -38,6 +38,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.jar.JarInputStream;
 import java.util.jar.JarOutputStream;
@@ -99,7 +100,7 @@ public class CrfSuiteStringOutcomeClassifierBuilder
   protected void unpackageClassifier(JarInputStream modelStream) throws IOException {
     super.unpackageClassifier(modelStream);
     JarStreams.getNextJarEntry(modelStream, MODEL_NAME);
-    this.modelFile = File.createTempFile("model", ".crfsuite");
+    this.modelFile = Files.createTempFile("model", ".crfsuite").toFile();
     this.modelFile.deleteOnExit();
     logger.log(Level.FINE, "Start writing model to " + modelFile.getAbsolutePath());
 

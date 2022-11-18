@@ -27,6 +27,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.Arrays;
 
 import libsvm.svm_model;
@@ -72,7 +73,7 @@ public abstract class LibSvmClassifierBuilder<CLASSIFIER_TYPE extends LibSvmClas
 
   @Override
   protected svm_model loadModel(InputStream inputStream) throws IOException {
-    File tmpFile = File.createTempFile("tmp", ".mdl");
+    File tmpFile = Files.createTempFile("tmp", ".mdl").toFile();
     FileOutputStream output = new FileOutputStream(tmpFile);
     try {
       IOUtils.copy(inputStream, output);

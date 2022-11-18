@@ -24,6 +24,7 @@
 package org.cleartk.timeml;
 
 import java.io.File;
+import java.nio.file.Files;
 
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
@@ -47,7 +48,7 @@ public class TimeMlAnnotateTest extends TimeMlTestBase{
 
   @Before
   public void setUp() throws Exception {
-    this.tempDir = File.createTempFile("TimeMLAnnotateTest", "");
+    this.tempDir = Files.createTempFile("TimeMLAnnotateTest", "").toFile();
     this.tempDir.delete();
     this.tempDir.mkdir();
     this.inputFile = new File(this.tempDir, "input.txt");
